@@ -4,7 +4,7 @@ import random
 def get_input():
     while True:
         try:
-            qty = int(input("How many passwords do you want to generate? "))
+            quantity = int(input("How many passwords do you want to generate? "))
             break
         except ValueError:
             print("\nPlease enter a number!")
@@ -25,10 +25,10 @@ def get_input():
         else:
             print("\nPlease enter either 'y' or 'n'!")
             continue
-    return [qty, length, special_chars]
+    return quantity, length, special_chars
 
 
-def special(special_chars):
+def get_character_set(special_chars):
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     special_charset = "!@#$%^&*()_+-=[]{}|;':\",./<>?"
     if special_chars == "y":
@@ -55,9 +55,9 @@ def pp_password(password):
 
 while True:
     print("\nWelcome to the password generator!\n")
-    user_input = get_input()
-    char_set = special(user_input[2])
-    passwords = generate_password(user_input[0], user_input[1], char_set)
+    quantity, length, special_chars = get_input()
+    char_set = get_character_set(special_chars)
+    passwords = generate_password(quantity, length, char_set)
     pp_password(passwords)
     while True:
         user_input = input("\nWould you like to continue? (y/n) ").lower()
